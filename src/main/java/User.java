@@ -59,4 +59,42 @@ public class User {
     public String getUuid() {
         return uuid;
     }
+
+    /**
+     * Check whether a given pin matches the true User pin
+     * @param aPin  the pin to check
+     * @return      whether the pin is valid or not
+     */
+    public boolean validatePin(String aPin) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            return MessageDigest.isEqual(md.digest(aPin.getBytes()),
+                    this.pinHash);
+        } catch (NoSuchAlgorithmException e) {
+            System.err.println("error,  caught NoSuchAlgorithmException");
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Return the user`s first name
+     * @return  the first name
+     */
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    /**
+     * Print summaries for the accounts of the user
+     */
+    public void printAccountsSummary() {
+
+        System.out.printf("\n\n%s`s accounts summary", this.firstName);
+        for (int i=0; i<this.accounts.size(); i++){
+            System.out.printf("%d) %s \n",
+                    this.accounts.get(i).getSummaryLine());
+        }
+        System.out.println();
+
+    }
 }
