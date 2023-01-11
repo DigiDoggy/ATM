@@ -42,7 +42,21 @@ public class User {
         this.accounts=new ArrayList<>();
         //print log message
         System.out.printf("New usr %s, %s with ID %s created.\n",lastName,firstName,this.uuid);
-
     }
 
+    /**
+     * Add an account for the user
+     * @param anAcct the account to add
+     */
+    public void addAccount(Account anAcct){
+        this.accounts.add(anAcct);
+    }
+
+    /**
+     * Returm the user`s UUID
+     * @return
+     */
+    public String getUuid() {
+        return uuid;
+    }
 }
