@@ -10,7 +10,7 @@ public class User {
     private String lastName;
     //THe ID number of the user
     private String uuid;
-    //The MD5 hash of the user`s pin number
+    //The MD5 hash of the user`s pin
     private byte pinHash[];
     //The list of accounts for this user
     private ArrayList<Account> accounts;
@@ -53,7 +53,7 @@ public class User {
     }
 
     /**
-     * Returm the user`s UUID
+     * Return the user`s UUID
      * @return
      */
     public String getUuid() {
@@ -91,10 +91,49 @@ public class User {
 
         System.out.printf("\n\n%s`s accounts summary", this.firstName);
         for (int i=0; i<this.accounts.size(); i++){
-            System.out.printf("%d) %s \n",
+            System.out.printf("%d) %s \n", i+1,
                     this.accounts.get(i).getSummaryLine());
         }
         System.out.println();
 
+    }
+
+    /**
+     * Get the number of accounts of the user
+     * @return  the number of accounts
+     */
+    public int numAccounts() {
+        return this.accounts.size();
+    }
+
+    /**
+     * Print transaction history for a particular account.
+     * @param acctIdx   the index of the account to use
+     */
+    public void printAcctTransHistory(int acctIdx){
+        this.accounts.get(acctIdx).printTransHistory();
+    }
+
+    /**
+     * Get the balance of a particular account
+     * @param acctIdx   the index of the account to use
+     * @return          the balance of the account
+     */
+    public double getAcctBalance(int acctIdx) {
+        return this.accounts.get(acctIdx).getBalance();
+    }
+
+
+    /**
+     * Get the UUID of a particular account
+     * @param acctIdx   the index of the account use
+     * @return          the UUID of the account
+     */
+    public Object getAcctUUID(int acctIdx) {
+        return this.accounts.get(acctIdx).getBalance();
+    }
+
+    public void addAcctTransaction(int acctIdx, double amount, String memo) {
+        this.accounts.get(acctIdx).addTransaction(amount,memo);
     }
 }
