@@ -9,7 +9,7 @@ public class ATM {
 
         //add a user, which also create a saving account
         User aUser = theBank.addUser("John", "Doe", "1234");
-        System.out.println("check");
+
 
         //add a checking account for user
         Account newAccount = new Account("Checking", aUser, theBank);
